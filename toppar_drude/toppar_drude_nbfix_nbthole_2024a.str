@@ -1,0 +1,839 @@
+* DRUDE toppar stream file for all NBFIX and NBTHOLE parameters
+* Yiling Nan and Alex MacKerell, Updated 2024_04
+*
+
+
+! Includes all NBFIX and NBTHOLE parameters created prior to 2023_9.
+! Special case system-specific parameters are presented first.
+
+! Ion-biomolecule NBFIX and NBTHOLE parameters based on extensive QM
+! and condensed phase fitting and validation. 2023_10
+! Yiling Nan and Alex MacKerell
+
+! ACET, ACEM, NMA, MEOH with group 1 parameters, JCTC https://doi.org/10.1021/acs.jctc.3c01380.
+! Other Parameters, manuscript under preparation
+
+! Last Updated on 2024_05
+! modified nucleic acid base - SOD interaction
+
+read para card append
+* NBFIX and NBTHOLE parameters
+*
+
+NBFIX
+
+! Special cases
+! nucleic acid specific
+OD31A   ND2R6B -0.04762  4.13429 ! jal: to disfavor 5'-syn state of Ade/Gua
+! protein specific
+! phen/cres-OH...NC1
+OD31C   ND3P3A -0.010    4.05    ! phenol, to prevent hydroxyl-amino interactions being too favorable, fylin 11/2018 
+OD2C2B  ND2B1  -0.18748  3.64122 ! yiling, phosphate O to N in base, avoid H-bond in GACC RNA
+OD30B   ND2B1  -0.17734  3.92208 ! yiling, phosphate O to N in base, avoid H-bond in GACC RNA
+
+!!!! water-model compounds
+ODW     CD2O3A  -0.11528 3.48690 ! MAS, PEML 
+ODW     CD2R6B  -0.14080 3.85690 ! PYR, pyridine, PEML 
+ODW     CD2R6C  -0.15090 3.83690 ! PYRM, pyrimidine, PEML 
+ODW     ND2A2   -0.20540 3.63690 ! NMA, PEML 
+ODW     ND3A2   -0.36000 3.48200 ! neutral aliphatic amines, MAM1, EAM1, PAM1, dGwat, fylin 2018
+ODW     ND2R6B  -0.22589 3.85792 ! acceptor nitrogen in purines and pyrimidines, jal
+ODW     OD2C1A  -0.20540 3.60690 ! NMA, PEML
+ODW     OD2C1B  -0.20540 3.68690 ! THY, CYT, URA, GUA, jal
+ODW     OD2C3A  -0.27942 3.62321 ! ester carbonyl O for lipids
+ODW     OD30C   -0.16583 3.53691 ! ester sp3 O for lipids
+ODW     OD305A  -0.14990 3.54690 ! THF, 01/12 xhe 
+ODW     OD306A  -0.14990 3.58690 ! THP, 01/12 xhe 
+ODW     SD30A   -0.26572 3.82693 ! EMS, Xiao 
+ODW     SD30B   -0.26981 3.78693 ! DMDS, Xiao 
+
+! protein ionic interactions, fylin, 2018
+! =========================================
+!NC1/MGUAN..acetNC1/MGUAN..acetNC1/MGUAN..acet 
+HDP1B   OD2C2A  -0.015   2.58      !
+ND3P3A  OD2C2A  -0.058   3.85      !
+! MGUAN-N..acet
+ND2P1A  OD2C2A  -0.013   4.12      ! 
+CD2N1A  OD2C2A  -0.085   3.62      !
+! IMIM..acet
+ND2R5C  OD2C2A  -0.037   3.82      ! 
+CD2R5D  OD2C2A  -0.013   3.90      ! 
+CD2R5E  OD2C2A  -0.013   3.90      ! 
+
+! Molecular cation/anion-Pi interaction - fylin, 2019
+! ==========================================
+! BENZ/TOLU/CRES/PHEN/INDO/MIND...NC1 
+! ------------------------------------------
+CD2R6A  ND3P3A  -0.020   3.85      ! 
+CD2R6D  ND3P3A  -0.090   3.85      ! 
+LPA1    ND3P3A  -0.080   3.85      ! 
+LPA2    ND3P3A  -0.005   3.85      ! 
+LPA3    ND3P3A  -0.040   3.85      ! 
+! BENZ/TOLU/CRES/PHEN/INDO/MIND...MGUAN
+! ------------------------------------------
+CD2R6A  ND2P1A  -0.300   3.90      ! 
+CD2R6D  ND2P1A  -0.400   3.80      ! 
+LPA1    CD2N1A  -0.050   3.80      ! 
+LPA2    ND2P1A  -0.850   4.00      ! 
+LPA3    CD2N1A  -0.850   3.85      ! 
+! BENZ/TOLU/CRES/PHEN/INDO/MIND...IMIM
+! ------------------------------------------
+CD2R6A  ND2R5C  -0.530   3.80      !
+CD2R6D  ND2R5C  -0.100   3.90      !
+LPA1    ND2R5C  -0.200   4.00      !
+LPA2    ND2R5C  -0.890   3.20      !
+! BENZ/TOLU/CRES/PHEN/INDO/MIND...ACET
+! ------------------------------------------
+CD2R6A  OD2C2A  -0.600   3.65      ! 
+CD2R6D  OD2C2A  -0.100   3.65      ! 
+LPA1    OD2C2A  -0.050   3.60      ! 
+LPA2    OD2C2A  -0.680   4.10      ! 
+LPA3    OD2C2A  -0.200   3.65      ! 
+! IMID/4MIM/4MIE..NC1
+! ------------------------------------------
+CD2R5A  ND3P3A  -0.010   3.60      ! 
+CD2R5B  ND3P3A  -0.010   4.25      ! 
+ND2R5A  ND3P3A  -0.100   3.80      ! 
+ND2R5B  ND3P3A  -0.010   3.70      ! 
+LP5N    ND3P3A  -0.200   3.80      !
+! IMID/4MIM/4MIE..MGUAN
+! ------------------------------------------
+CD2R5A  ND2P1A  -0.250   3.90      ! 
+CD2R5B  ND2P1A  -0.720   3.88      ! 
+ND2R5A  ND2P1A  -0.080   3.95      ! 
+ND2R5B  ND2P1A  -0.044   3.90      ! 
+LP5N    CD2N1A  -0.400   4.00      ! 
+! IMID/4MIM/4MIE..IMIM            
+! ------------------------------------------
+CD2R5A  ND2R5C  -0.600   3.65      ! 
+CD2R5B  ND2R5C  -0.100   4.05      ! 
+ND2R5A  ND2R5C  -0.450   3.90      ! 
+ND2R5B  ND2R5C  -0.100   3.95      ! 
+LP5N    ND2R5C  -0.300   3.95      ! 
+ND2R5B  CD2R5E  -0.300   3.95      ! 
+! INDO/MIND/4MIM/4MIE ..ACET
+! ------------------------------------------
+CD2R5B  OD2C2A  -0.885   3.60      ! 
+ND2R5B  OD2C2A  -0.885   3.60      ! 
+! -----------------------------------------     
+! INDO/MIND/4MIM/4MIE/IMID-ND2R5A..ACET 
+CD2R5A  OD2C2A  -0.020   3.80      !
+ND2R5A  OD2C2A  -0.055   3.80      !
+!End molecular cation/anion-Pi
+
+! Monoatomic cations
+!!!!! Lithium !!!!!
+LID     CD2R6A  -0.04550 3.36536 ! benz, yiling, 2023
+LID     CLAD    -0.04647 3.80000 ! chloride, Savelyev-2015
+LID     LPDNA1  -0.09000 2.60000 ! NA bases, LP - acceptor, Savelyev-2014 and 2015
+LID     ND2A1   -0.06928 2.76958 ! acem, yiling, 2023
+LID     ND2A2   -0.07746 3.19807 ! nma, yiling, 2023
+LID     ND2B1   -0.07450 3.19628 ! adeb, guab, cytb, yiling, 2023, amino N
+LID     ND2R5A  -0.05109 3.39327 ! imid, indo, yiling, 2023, protonated N
+LID     ND2R5B  -0.04550 3.07703 ! imid, yiling, 2023, unprotonated N
+LID     ND2R5D  -0.09116 2.84232 ! adeb, guab, yiling, 2023, N9
+LID     ND2R5E  -0.05422 2.65256 ! adeb, guab, yiling, 2023, N7
+LID     ND2R6B  -0.06340 3.04037 ! adeb, cytb, yiling, 2023, N3
+LID     ND2R6C  -0.05950 3.06043 ! guab, cytb, thyb, urab, yiling, 2023, N1
+LID     ND3A2   -0.10507 2.91762 ! mam1, yiling, 2023
+LID     OD2C1A  -0.07746 2.86833 ! acem, nma, yiling, 2023
+LID     OD2C1B  -0.07804 2.17514 ! guab, cytb, thyb, urab, yiling, 2023
+LID     OD2C2A  -0.09487 3.00493 ! acet, yiling, 2023, JCTC 
+LID     OD2C2B  -0.07550 3.02241 ! dmp, yiling, 2023
+LID     OD2C3A  -0.07348 2.65664 ! aceh,mas, yiling, 2023
+LID     OD30A   -0.04243 2.83896 ! meet, yiling, 2023
+LID     OD30B   -0.07141 2.57285 ! dmp, yiling, 2023
+LID     OD30BR  -0.07141 2.57285 ! dmp, yiling, 2023, RNA
+LID     OD30C   -0.06050 2.89682 ! mas, yiling, 2023
+LID     OD30D   -0.07141 2.57285 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+LID     OD30E   -0.15780 2.63213 ! phet, yiling, 2023
+LID     OD305A  -0.04243 2.83896 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+LID     OD306A  -0.04243 2.83896 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+LID     OD31A   -0.06708 2.76202 ! meoh, yiling, 2023
+LID     OD31B   -0.06708 2.76202 ! meoh, yiling, 2023, applied to primary, long alcohols
+LID     OD31C   -0.08660 2.59700 ! phen, yiling, 2023
+LID     OD31D   -0.07183 3.08863 ! aceh, yiling, 2023, applied to Methylphosphate, neutral
+LID     OD31E   -0.06708 2.76202 ! meoh, yiling, 2023, applied to ethylene glycol
+LID     OD31F   -0.07183 3.08863 ! aceh, yiling, 2023
+LID     OD31G   -0.06708 2.76202 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+LID     SD2C2A  -0.07746 3.56646 ! mes, yiling, 2023
+LID     SD2C2B  -0.07746 3.56646 ! mes, yiling, 2023, applied to ETS, thiolates
+LID     SD30A   -0.09644 3.35945 ! dms, yiling, 2023
+LID     SD30B   -0.09798 3.36842 ! dmds, yiling, 2023
+LID     SD31A   -0.11358 3.29425 ! mesh, yiling, 2023
+LID     SD31B   -0.11358 3.29425 ! mesh, yiling, 2023, applied to ETSH
+ 
+!!!!! Sodium !!!!!
+SODD    CD2R6A  -0.04663 3.74147 ! benz, yiling, 2023
+SODD    CLAD    -0.04762 4.09000 ! chloride, Savelyev-2014
+SODD    LPDNA1  -0.09000 2.92000 ! NA bases, LP - acceptor, Savelyev-2014 and 2015
+SODD    LPDO1   -0.06000 2.77000 ! protein backbone/amide, Hui-2015
+SODD    ND2A1   -0.07100 3.69713 ! acem, yiling, 2023, JCTC 
+SODD    ND2A2   -0.07939 3.58617 ! nma, yiling, 2023, JCTC 
+SODD    ND2B1   -0.07635 3.58025 ! adeb, guab, cytb, yiling, 2023, amino N
+SODD    ND2R5A  -0.05236 3.66106 ! imid, indo, yiling, 2023, protonated N
+SODD    ND2R5B  -0.04663 3.56508 ! imid, yiling, 2023, 2023, unprotonated N
+SODD    ND2R5D  -0.09343 3.35734 ! adeb, guab, yiling, 2023, N9
+SODD    ND2R5E  -0.05557 2.85729 ! adeb, guab, yiling, 2023, N7
+SODD    ND2R6B  -0.06498 3.52407 ! adeb, cytb, yiling, 2023, N3
+SODD    ND2R6C  -0.06098 3.58769 ! guab, cytb, thyb, urab, yiling, 2023, N1
+SODD    ND3A2   -0.10768 3.29369 ! mam1, yiling, 2023
+SODD    OD2C1A  -0.07939 3.11051 ! acem, nma, yiling, 2023, JCTC 
+SODD    OD2C1B  -0.07998 2.63852 ! guab, cytb, thyb, urab, yiling, 2023
+SODD    OD2C2A  -0.09723 3.40961 ! acet, yiling, 2023, JCTC 
+SODD    OD2C2B  -0.07738 3.38658 ! dmp, yiling, 2023, JCTC 
+SODD    OD2C3A  -0.07531 3.28395 ! aceh,mas, yiling, 2023
+SODD    OD30A   -0.04348 3.32356 ! meet, yiling, 2023
+SODD    OD30B   -0.07319 2.97103 ! dmp, yiling, 2023
+SODD    OD30BR  -0.07319 2.97103 ! dmp, yiling, 2023, RNA
+SODD    OD30C   -0.06200 3.58228 ! mas, yiling, 2023
+SODD    OD30D   -0.07319 2.97103 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+SODD    OD30E   -0.16172 3.03166 ! phet, yiling, 2023
+SODD    OD305A  -0.04348 3.32356 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+SODD    OD306A  -0.04348 3.32356 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+SODD    OD31A   -0.06780 3.21654 ! meoh, yiling, 2023, JCTC 
+SODD    OD31B   -0.06780 3.21654 ! meoh, yiling, 2023, applied to primary, long alcohols
+SODD    OD31C   -0.08876 3.05370 ! phen, yiling, 2023
+SODD    OD31D   -0.07362 3.28930 ! aceh, yiling, 2023, applied to Methylphosphate, neutral
+SODD    OD31E   -0.06780 3.21654 ! meoh, yiling, 2023, applied to ethylene glycol
+SODD    OD31F   -0.07362 3.28930 ! aceh, yiling, 2023
+SODD    OD31G   -0.06780 3.21654 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+SODD    SD2C2A  -0.07939 4.03799 ! mes, yiling, 2023
+SODD    SD2C2B  -0.07939 4.03799 ! mes, yiling, 2023, applied to ETS, thiolates 
+SODD    SD30B   -0.10042 3.73661 ! dmds, yiling, 2023
+SODD    SD31A   -0.11640 3.52978 ! mesh, yiling, 2023
+SODD    SD31B   -0.11640 3.52978 ! mesh, yiling, 2023, applied to ETSH
+ 
+!!!!! Potassium !!!!!
+POTD    CD2R6A  -0.09896 3.84110 ! benz, yiling, 2023
+POTD    CLAD    -0.10107 4.21000 ! chloride, Savelyev-2015
+POTD    LPDNA1  -0.09000 3.37000 ! NA bases, LP - acceptor, Savelyev-2014 and 2015
+POTD    LPDO1   -0.07000 3.02000 ! protein backbone/amide, Hui-2015
+POTD    ND2A1   -0.15069 3.69214 ! acem, yiling, 2023, JCTC 
+POTD    ND2A2   -0.16848 3.38999 ! nma, yiling, 2023, JCTC 
+POTD    ND2B1   -0.16204 3.79699 ! adeb, guab, cytb, yiling, 2023, amino N
+POTD    ND2R5A  -0.11112 3.52615 ! imid, indo, yiling, 2023, protonated N
+POTD    ND2R5B  -0.09896 3.71671 ! imid, yiling, 2023, unprotonated N
+POTD    ND2R5D  -0.19828 3.43980 ! adeb, guab, yiling, 2023, N9
+POTD    ND2R5E  -0.11794 2.87351 ! adeb, guab, yiling, 2023, N7
+POTD    ND2R6B  -0.13791 3.59051 ! adeb, cytb, yiling, 2023, N3
+POTD    ND2R6C  -0.12941 3.66985 ! guab, cytb, thyb, urab, yiling, 2023, N1
+POTD    ND3A2   -0.22854 3.48076 ! mam1, yiling, 2023
+POTD    OD2C1A  -0.16848 3.43708 ! acem, nma, yiling, 2023, JCTC 
+POTD    OD2C1B  -0.16974 2.77326 ! guab, cytb, thyb, urab, yiling, 2023
+POTD    OD2C2A  -0.20634 3.54781 ! acet, yiling, 2023, JCTC 
+POTD    OD2C2B  -0.16421 3.45707 ! dmp, yiling, 2023
+POTD    OD2C3A  -0.15983 3.49368 ! aceh,mas, yiling, 2023
+POTD    OD30A   -0.09228 3.57463 ! meet, yiling, 2023
+POTD    OD30B   -0.15533 3.31038 ! dmp, yiling, 2023
+POTD    OD30BR  -0.15533 3.31038 ! dmp, yiling, 2023, RNA
+POTD    OD30C   -0.13159 3.66782 ! mas, yiling, 2023
+POTD    OD30D   -0.15533 3.31038 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+POTD    OD30E   -0.34322 3.07056 ! phet, yiling, 2023
+POTD    OD305A  -0.09228 3.57463 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+POTD    OD306A  -0.09228 3.57463 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+POTD    OD31A   -0.14591 3.49152 ! meoh, yiling, 2023, JCTC 
+POTD    OD31B   -0.14591 3.49152 ! meoh, yiling, 2023, applied to primary, long alcohols
+POTD    OD31C   -0.18837 3.30998 ! phen, yiling, 2023
+POTD    OD31D   -0.15624 3.62385 ! aceh, yiling, 2023, applied to Methylphosphate, neutral
+POTD    OD31E   -0.14591 3.49152 ! meoh, yiling, 2023, applied to ethylene glycol
+POTD    OD31F   -0.15624 3.62385 ! aceh, yiling, 2023
+POTD    OD31G   -0.14591 3.49152 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+POTD    SD2C2A  -0.16848 3.44105 ! mes, yiling, 2023
+POTD    SD2C2B  -0.16848 3.44105 ! mes, yiling, 2023, applied to ETS, thiolates
+POTD    SD30A   -0.20976 3.95002 ! dms, yiling, 2023
+POTD    SD30B   -0.21311 4.00448 ! dmds, yiling, 2023
+POTD    SD31A   -0.24704 3.72316 ! mesh, yiling, 2023
+POTD    SD31B   -0.24704 3.72316 ! mesh, yiling, 2023, applied to ETSH
+ 
+!!!!! Rubidium !!!!!
+RBD     CD2R6A  -0.13726 4.01411 ! benz, yiling, 2023
+RBD     CLAD    -0.14019 4.27000 ! chloride, Savelyev-2015
+RBD     LPDNA1  -0.09000 3.57000 ! NA bases, LP - acceptor, Savelyev-2014 and 2015
+RBD     ND2A1   -0.20902 3.78108 ! acem, yiling, 2023
+RBD     ND2A2   -0.23370 3.74870 ! nma, yiling, 2023
+RBD     ND2B1   -0.22476 3.85703 ! adeb, guab, cytb, yiling, 2023, amino N
+RBD     ND2R5A  -0.15413 3.64509 ! imid, indo, yiling, 2023, protonated N
+RBD     ND2R5B  -0.13726 3.75842 ! imid, yiling, 2023, unprotonated N
+RBD     ND2R5D  -0.27503 3.52867 ! adeb, guab, yiling, 2023, N9
+RBD     ND2R5E  -0.16359 3.09032 ! adeb, guab, yiling, 2023, N7
+RBD     ND2R6B  -0.19129 3.81617 ! adeb, cytb, yiling, 2023, N3
+RBD     ND2R6C  -0.17950 3.78833 ! guab, cytb, thyb, urab, yiling, 2023, N1
+RBD     ND3A2   -0.31700 3.62004 ! mam1, yiling, 2023
+RBD     OD2C1A  -0.23370 3.49474 ! acem, nma, yiling, 2023
+RBD     OD2C1B  -0.23544 2.86081 ! guab, cytb, thyb, urab, yiling, 2023
+RBD     OD2C2A  -0.28622 3.67610 ! acet, yiling, 2023, JCTC 
+RBD     OD2C2B  -0.22778 3.48176 ! dmp, yiling, 2023
+RBD     OD2C3A  -0.22170 3.55885 ! aceh,mas, yiling, 2023
+RBD     OD30A   -0.12800 3.69056 ! meet, yiling, 2023
+RBD     OD30B   -0.21546 3.30513 ! dmp, yiling, 2023
+RBD     OD30BR  -0.21546 3.30513 ! dmp, yiling, 2023, RNA
+RBD     OD30C   -0.18252 3.75735 ! mas, yiling, 2023
+RBD     OD30D   -0.21546 3.30513 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+RBD     OD30E   -0.47607 3.34533 ! phet, yiling, 2023
+RBD     OD305A  -0.12800 3.69056 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+RBD     OD306A  -0.12800 3.69056 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+RBD     OD31A   -0.20239 3.61044 ! meoh, yiling, 2023, JCTC 
+RBD     OD31B   -0.20239 3.61044 ! meoh, yiling, 2023, applied to primary, long alcohols
+RBD     OD31C   -0.26128 3.27395 ! phen, yiling, 2023
+RBD     OD31D   -0.21672 3.81493 ! aceh, yiling, 2023, applied to Methylphosphate, neutral
+RBD     OD31E   -0.20239 3.61044 ! meoh, yiling, 2023, applied to ethylene glycol
+RBD     OD31F   -0.21672 3.81493 ! aceh, yiling, 2023
+RBD     OD31G   -0.20239 3.61044 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+RBD     SD2C2A  -0.23370 4.21446 ! mes, yiling, 2023
+RBD     SD2C2B  -0.23370 4.21446 ! mes, yiling, 2023, applied to ETS, thiolates
+RBD     SD30A   -0.29095 4.06564 ! dms, yiling, 2023
+RBD     SD30B   -0.29560 4.01139 ! dmds, yiling, 2023
+ 
+!!!!! Cesium !!!!!
+CSD     CD2R6A  -0.13815 4.03106 ! benz, yiling, 2023
+CSD     ND2A1   -0.21037 4.01393 ! acem, yiling, 2023
+CSD     ND2A2   -0.23520 3.90583 ! nma, yiling, 2023
+CSD     ND2B1   -0.22621 4.03632 ! adeb, guab, cytb, yiling, 2023, amino N
+CSD     ND2R5A  -0.15513 3.64608 ! imid, indo, yiling, 2023, protonated N
+CSD     ND2R5B  -0.13815 3.88696 ! imid, yiling, 2023, unprotonated N
+CSD     ND2R5D  -0.27680 3.39700 ! adeb, guab, yiling, 2023, N9
+CSD     ND2R5E  -0.16464 3.83174 ! adeb, guab, yiling, 2023, N7
+CSD     ND2R6B  -0.19252 4.12652 ! adeb, cytb, yiling, 2023, N3
+CSD     ND2R6C  -0.18066 3.81737 ! guab, cytb, thyb, urab, yiling, 2023, N1
+CSD     ND3A2   -0.31905 3.74421 ! mam1, yiling, 2023
+CSD     OD2C1A  -0.23520 3.64357 ! acem, nma, yiling, 2023
+CSD     OD2C1B  -0.23696 3.79232 ! guab, cytb, thyb, urab, yiling, 2023
+CSD     OD2C2A  -0.28806 3.83656 ! acet, yiling, 2023, JCTC 
+CSD     OD2C2B  -0.22925 3.67501 ! dmp, yiling, 2023
+CSD     OD2C3A  -0.22313 3.76247 ! aceh,mas, yiling, 2023
+CSD     OD30A   -0.12883 3.69778 ! meet, yiling, 2023
+CSD     OD30B   -0.21685 3.39959 ! dmp, yiling, 2023
+CSD     OD30BR  -0.21685 3.39959 ! dmp, yiling, 2023, RNA
+CSD     OD30C   -0.18370 3.69332 ! mas, yiling, 2023
+CSD     OD30D   -0.21685 3.39959 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+CSD     OD30E   -0.47915 3.34382 ! phet, yiling, 2023
+CSD     OD305A  -0.12883 3.69778 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+CSD     OD306A  -0.12883 3.69778 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+CSD     OD31A   -0.20369 3.73546 ! meoh, yiling, 2023
+CSD     OD31B   -0.20369 3.73546 ! meoh, yiling, 2023, applied to primary, long alcohols
+CSD     OD31C   -0.26297 3.68851 ! phen, yiling, 2023
+CSD     OD31D   -0.21812 3.96427 ! aceh, yiling, 2023, applied to Methylphosphate, neutral
+CSD     OD31E   -0.20369 3.73546 ! meoh, yiling, 2023, applied to ethylene glycol
+CSD     OD31F   -0.21812 3.96427 ! aceh, yiling, 2023
+CSD     OD31G   -0.20369 3.73546 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+CSD     SD2C2A  -0.23520 3.70638 ! mes, yiling, 2023
+CSD     SD2C2B  -0.23520 3.70638 ! mes, yiling, 2023, applied to ETS, thiolates
+CSD     SD30A   -0.29283 4.17814 ! dms, yiling, 2023
+CSD     SD30B   -0.29751 4.19082 ! dmds, yiling, 2023
+
+! Divalent monoatomic cations
+!!!!! Magnesium !!!!!
+MAGD    DOH2    -0.07500 2.65500 ! damp water dipole, improves dissociation kinetics, jal
+MAGD    LPDNA1  -0.16504 2.20163 ! NA bases, LP - acceptor, Savelyev-2014 and 2015
+MAGD    LPDO1   -0.14500 2.36100 ! protein backbone/amide LPDO1 on OD2C1A
+MAGD    ND2R6B  -0.09031 3.13208 ! Cyt-N3, Ade-N3/N1, Gua-N3, jal
+MAGD    ND2R5E  -0.16925 2.68762 ! Ade/Gua-N7
+MAGD    ND2R6C  -0.06991 3.37008 ! Cyt-N1, Thy-N3, Ura-N1/N3, Gua-N1
+MAGD    ND2R6D  -0.06991 3.37008 ! Thy-N1
+MAGD    ND2B1   -0.10818 3.10817 ! Cyt-N4, Ade-N6, Gua-N2
+MAGD    OD2C1A  -0.10050 2.72900 ! protein backbone/amide LPDO1 on OD2C1A
+MAGD    OD2C1B  -0.28833 2.43438 ! Cyt-O2, Thy-O2/O4, Ura-O2/O4, Gua-O6
+MAGD    OD2C2B  -0.31211 2.59990 ! phosphate anionic O, lipids & nucleic acids
+MAGD    OD30B   -0.40592 4.40157 ! phosphate ester O, lipids & nucleic acids
+MAGD    OD30BR  -0.40592 4.40157 ! phosphate ester O, nucleic acids, RNA specific
+MAGD    OD30D   -0.40592 2.25157 ! phosphate ester O, MP_1
+
+!!!!! Calcium  !!!!!
+! These need to be redone
+!CALD    LPDO1  -0.37000 2.50000 ! protein backbone/amide, Hui-2015, commented until testing complete
+!CALD    OD2C1A -0.22000 2.85000 ! protein backbone/amide, Hui-2015, commented until testing complete
+!CALD    OD2C2A -0.11000 3.51500 ! glu, asp, Hui-2015, commented until testing complete
+!CALD    OD31A  -0.10000 3.28000 ! ethanol, ser, thr, Hui-2015, commented until testing complete
+!CALD    OD31B  -0.10000 3.28000 ! from CALD OD31A, commented until testing complete
+!CALD    OD31C  -0.10000 3.28000 ! from CALD OD31A, commented until testing complete
+!CALD    OD31E  -0.10000 3.28000 ! from CALD OD31A, commented until testing complete
+!CALD    OD31F  -0.10000 3.28000 ! from CALD OD31A, commented until testing complete
+!CALD    OD31G  -0.10000 3.28000 ! from CALD OD31A, commented until testing complete
+
+! Monoatomic anions
+!!!!! Chloride !!!!!!
+CLAD    CD2N1A  -0.18490 4.30260 ! mguan, yiling, 2023
+CLAD    ND2P1A  -0.08269 4.14635 ! mguan, yiling, 2023
+CLAD    ND2R5C  -0.08693 4.36326 ! imim, yiling, 2023
+CLAD    ND2R6C  -0.08693 4.36326 ! imim, yiling, 2023, applied to 6-mem ring: protonated: NA pyrimidine bases: CHECK
+CLAD    ND3P2A  -0.04242 4.62234 ! nc1, yiling, 2023, applied to protonated sp3 nitrogen, 0, 1 or 2 Hs
+CLAD    ND3P3A  -0.04242 4.62234 ! nc1, yiling, 2023
+! Prior to 2023 update. Hui-2015 parameters need validation
+CLAD    HDP1A   -0.00100 3.54000 ! protein/backbone, Hui-2015, undergoing testing
+CLAD    ND2A2   -0.08000 4.65000 ! protein/backbone, Hui-2015, undergoing testing
+CLAD    ND2B1   -0.07000 4.31000 ! nucleic acids, Savelyev-2014
+CLAD    ND2R5D  -0.07000 4.31000 ! nucleic acids, Savelyev-2014
+CLAD    ND2R5E  -0.07000 4.31000 ! nucleic acids, Savelyev-2014
+CLAD    ND2R5F  -0.07000 4.31000 ! nucleic acids, Savelyev-2014
+CLAD    ND2R6B  -0.07000 4.31000 ! nucleic acids, Savelyev-2014
+!CLAD    ND2R6C  -0.07000 4.31000 ! nucleic acids, Savelyev-2014
+CLAD    ND2R6D  -0.07000 4.31000 ! nucleic acids, Savelyev-2014
+CLAD    OD31A   -0.10390 4.05000 ! ethanol, ser, thr, Hui-2015, undergoing testing
+CLAD    OD31B   -0.10390 4.05000 ! from CLAD OD31B, undergoing testing
+CLAD    OD31C   -0.10390 4.05000 ! from CLAD OD31B, undergoing testing
+CLAD    OD31E   -0.10390 4.05000 ! from CLAD OD31B, undergoing testing
+CLAD    OD31F   -0.10390 4.05000 ! from CLAD OD31B, undergoing testing
+CLAD    OD31G   -0.10390 4.05000 ! from CLAD OD31B, undergoing testing
+
+! Halogens
+! halogens and water oxygen, fylin and adm.
+ODW     FDA1    -0.18900 3.57000 ! FETH, DFET
+ODW     FDA3    -0.05000 3.93000 ! TFET
+ODW     CLDA1   -0.25000 3.56000 ! CLET, DCLE
+ODW     CLDA3   -0.19800 3.60000 ! TCLE
+ODW     BRDA1   -0.26200 3.63000 ! BRET/DBRE/TBRE
+ODW     IDA1    -0.24500 3.96000 ! IETH/DIET/TIET
+ODW     FDR1    -0.14000 3.58000 ! FLUB 
+ODW     CLDR1   -0.14500 3.60000 ! CLET
+ODW     BRDR1   -0.17800 3.78000 ! BROB 
+ODW     IDR1    -0.24500 3.96000 ! IODB
+! halogen Drude and water hydrogen
+HDW     DF2     -0.00800 2.87000 ! FLUB 
+HDW     DCL2    -0.04100 3.00000 ! CHLB
+HDW     DCL3    -0.04000 2.97000 ! CLET, DCLE, TCLE
+HDW     DBR2    -0.07000 3.07000 ! BROB/BRET/DBRE/TBRE 
+HDW     DI2     -0.10000 3.24000 ! IODB/IETH/DIET/TIET 
+
+! Halogens with protein and other macromolecular residues
+! DCL2/DCL3 with HDP1A for all neutral hydrogen bond donors
+!==================================================
+DCL2    HDP1A   -0.01900 3.01800 !  CHLB's HBD-H
+DCL3    HDP1A   -0.04000 2.87000 !  CLET/DCLE/TCLE's HBD-H
+DBR2    HDP1A   -0.08000 3.03500 !  BROB's HBD-H
+
+! chlorobenzene based
+!----------------------------------------------------------
+CLDR1   ND2A1   -0.20000 3.85000 ! CHLB..ACEM
+DCL2    ND2A1   -0.10000 3.85000 ! CHLB..ACEM
+CLDR1   ND2A2   -0.18000 3.87000 ! CHLB..NMA
+DCL2    ND2A2   -0.10000 3.69000 ! CHLB..NMA
+CLDR1   ND2B1   -0.20000 3.85000 ! from CLDR1 ND2A1, ACEM (with na)
+DCL2    ND2B1   -0.10000 3.85000 ! from DCL2  ND2A1, ACEM (with na)
+CLDR1   ND2R5A  -0.26000 3.70000 ! CHLB..IMID 
+DCL2    ND2R5A  -0.06600 3.70000 ! CHLB..IMID 
+CLDR1   ND2R5B  -0.12500 3.68000 ! CHLB..IMID 
+DCL2    ND2R5B  -0.05000 3.68000 ! CHLB..IMID 
+CLDR1   ND2R5E  -0.12500 3.68000 ! from CLDR1 ND2R5B, IMID (with na)
+DCL2    ND2R5E  -0.05000 3.68000 ! from DCL2  ND2R5B, IMID (with na)
+CLDR1   ND2R6A  -0.12500 3.68000 ! from CLDR1 ND2R5B, IMID, alex, for pyridine (with na)
+DCL2    ND2R6A  -0.05000 3.68000 ! from DCL2  ND2R5B, IMID, alex, for pyridine (with na)
+CLDR1   ND2R6B  -0.12500 3.68000 ! from CLDR1 ND2R5B, IMID (with na)
+DCL2    ND2R6B  -0.05000 3.68000 ! from DCL2  ND2R5B, IMID (with na)
+CLDR1   ND2R6C  -0.18000 3.87000 ! from CLDR1 ND2A2, NMA, alex (with na)
+DCL2    ND2R6C  -0.10000 3.69000 ! from DCL2  ND2A2, NMA, alex (with na)
+CLDR1   ND2P1A  -0.28000 3.78000 ! CHLB..MGUAN (DCL2/DCL3..HDP1B unnecessary)   
+CLDR1   ND3P3A  -0.26000 3.76000 ! CHLB..NC1 (DCL2/DCL3..HDP1B unnecessary)
+CLDR1   OD2C1A  -0.30000 3.32000 ! CHLB..NMA  
+DCL2    OD2C1A  -0.10000 3.32000 ! CHLB..NMA  
+CLDR1   OD2C1B  -0.30000 3.32000 ! from CLDR1 OD2C1A, NMA (with na)
+DCL2    OD2C1B  -0.10000 3.32000 ! from DCL2  OD2C1A, NMA (with na)
+CLDR1   OD2C1C  -0.30000 3.32000 ! from CLDR1 OD2C1A, NMA (with carb.)
+DCL2    OD2C1C  -0.10000 3.32000 ! from DCL2  OD2C1A, NMA (with carb.)
+CLDR1   OD2C1D  -0.30000 3.32000 ! from CLDR1 OD2C1A, NMA (with carb.)
+DCL2    OD2C1D  -0.10000 3.32000 ! from DCL2  OD2C1A, NMA (with carb.)
+CLDR1   OD2C2A  -0.13500 3.49000 ! CHLB..ACET
+DCL2    OD2C2A  -0.13000 3.49000 ! CHLB..ACET
+CLDR1   OD2C2B  -0.13500 3.49000 ! from CLDR1 OD2C2A, ACET, alex, for phosphate (with lipids & na)
+DCL2    OD2C2B  -0.13000 3.49000 ! from DCL2  OD2C2A, ACET, alex                (with lipids & na)
+CLDR1   OD2C3A  -0.30000 3.32000 ! from CLDR1 OD2C1A, NMA, alex, ester (with lipids)
+DCL2    OD2C3A  -0.10000 3.32000 ! from DCL2  OD2C1A, NMA, alex  (with lipids)
+CLDR1   OD31A   -0.06000 3.56000 ! CHLB..MEOH  
+DCL2    OD31A   -0.10500 3.56000 ! CHLB..MEOH  
+CLDR1   OD31B   -0.06000 3.56000 ! CHLB..MEOH  
+DCL2    OD31B   -0.10500 3.56000 ! CHLB..MEOH  
+CLDR1   OD31C   -0.13700 3.49000 ! CHLB..PHEN
+DCL2    OD31C   -0.11200 3.49000 ! CHLB..PHEN
+CLDR1   OD31E   -0.06000 3.56000 ! from CLDR1 OD31A, MEOH (with carb.)
+DCL2    OD31E   -0.10500 3.56000 ! from DCL2  OD31A, MEOH (with carb.)
+CLDR1   OD31F   -0.06000 3.56000 ! CHLB..MEOH, alex, for OH in neutral acid
+DCL2    OD31F   -0.10500 3.56000 ! CHLB..MEOH, alex
+CLDR1   OD31G   -0.06000 3.56000 ! from CLDR1 OD31A, MEOH, alex (with na)
+DCL2    OD31G   -0.10500 3.56000 ! from DCL2  OD31A, MEOH, alex (with na)
+CLDR1   SD31A   -0.23000 3.81000 ! CHLB..MESH
+DCL2    SD31A   -0.30000 3.81000 ! CHLB..MESH
+CLDR1   SD31B   -0.23000 3.81000 ! CHLB..MESH, alex, for ETSH, CYS
+DCL2    SD31B   -0.30000 3.81000 ! CHLB..MESH, alex
+
+! mono, di and trichloroethane based
+!----------------------------------------------------------
+CLDA1   ND2A1   -0.30000 3.70000 ! CLET/DCET..ACEM
+CLDA3   ND2A1   -0.10000 3.86000 ! TCLE..ACEM
+DCL3    ND2A1   -0.10000 3.70000 ! CLET/DCET..ACEM
+CLDA1   ND2A2   -0.35000 3.55000 ! TCLE..NMA       
+CLDA3   ND2A2   -0.45000 3.58000 ! TCLE..NMA       
+DCL3    ND2A2   -0.10000 3.68000 ! CLET/DCLE/TCLE..NMA 
+CLDA1   ND2B1   -0.30000 3.70000 ! from CLDA1 ND2A1, ACEM  (with na)
+CLDA3   ND2B1   -0.10000 3.86000 ! from CLDA3 ND2A1, ACEM  (with na)
+DCL3    ND2B1   -0.10000 3.70000 ! from DCL3  ND2A1, ACEM  (with na)
+CLDA1   ND2R5A  -0.13000 3.75000 ! CLET/DCLE..IMID 
+CLDA3   ND2R5A  -0.18500 3.92000 ! TCLE..IMID 
+DCL3    ND2R5A  -0.05600 3.85000 ! TCLE..IMID 
+CLDA1   ND2R5B  -0.12500 3.68000 ! CLET/DCLE..IMID 
+CLDA3   ND2R5B  -0.02000 3.93000 ! TCLE..IMID 
+DCL3    ND2R5B  -0.05000 3.90000 ! CLET/DCLE/TCLE..IMID 
+CLDA1   ND2R5E  -0.12500 3.68000 ! from CLDA1 ND2R5B, IMID (with na)
+CLDA3   ND2R5E  -0.02000 3.93000 ! from CLDA3 ND2R5B, IMID (with na)
+DCL3    ND2R5E  -0.05000 3.90000 ! from DCL3  ND2R5B, IMID (with na)
+CLDA1   ND2R6A  -0.12500 3.68000 ! from CLDA1 ND2R5B, IMID, alex, for pyridine (with na)
+CLDA3   ND2R6A  -0.02000 3.93000 ! from CLDA3 ND2R5B, IMID, alex, for pyridine (with na)
+DCL3    ND2R6A  -0.05000 3.90000 ! from DCL3  ND2R5B, IMID, alex, for pyridine (with na)
+CLDA1   ND2R6B  -0.12500 3.68000 ! from CLDA1 ND2R5B, IMID (with na)
+CLDA3   ND2R6B  -0.02000 3.93000 ! from CLDA3 ND2R5B, IMID (with na)
+DCL3    ND2R6B  -0.05000 3.90000 ! from DCL3  ND2R5B, IMID (with na)
+CLDA1   ND2R6C  -0.35000 3.55000 ! from CLDA1 ND2A2, NMA (with na)
+CLDA3   ND2R6C  -0.45000 3.58000 ! from CLDA3 ND2A2, NMA (with na)
+DCL3    ND2R6C  -0.10000 3.68000 ! from DCL3  ND2A2, NMA (with na)
+CLDA1   ND2P1A  -0.28000 3.78000 ! CLET..MGUAN (DCL2/DCL3..HDP1B unnecessary)
+CLDA1   ND3P3A  -0.13000 3.73000 ! CLET..NC1 (DCL2/DCL3..HDP1B unnecessary)
+CLDA1   OD2C1A  -0.30000 3.10000 ! CLET/DCLE..NMA  
+CLDA3   OD2C1A  -0.10000 3.26000 ! TCLE..NMA 
+DCL3    OD2C1A  -0.25000 3.48000 ! CLET/DCLE/TCLE..NMA 
+CLDA1   OD2C2A  -0.13500 3.49000 ! CLET/DCLE..ACET
+DCL3    OD2C2A  -0.13000 3.49000 ! CLET/DCLE..ACET
+CLDA1   OD2C1B  -0.30000 3.10000 ! from CLDA1 OD2C1A, NMA (with na)
+CLDA3   OD2C1B  -0.10000 3.26000 ! from CLDA3 OD2C1A, NMA (with na)
+DCL3    OD2C1B  -0.25000 3.48000 ! from DCL3  OD2C1A, NMA (with na)
+CLDA1   OD2C1C  -0.30000 3.10000 ! from CLDA1 OD2C1A, NMA (with carb.)
+CLDA3   OD2C1C  -0.10000 3.26000 ! from CLDA3 OD2C1A, NMA (with carb.)
+DCL3    OD2C1C  -0.25000 3.48000 ! from DCL3  OD2C1A, NMA (with carb.)
+CLDA1   OD2C1D  -0.30000 3.10000 ! from CLDA1 OD2C1A, NMA (with carb.)
+CLDA3   OD2C1D  -0.10000 3.26000 ! from CLDA3 OD2C1A, NMA (with carb.)
+DCL3    OD2C1D  -0.25000 3.48000 ! from DCL3  OD2C1A, NMA (with carb.)
+CLDA1   OD2C2B  -0.13500 3.49000 ! from CLDA1 OD2C2A, ACET 4check (with lipids & na)
+DCL3    OD2C2B  -0.13000 3.49000 ! from DCL3  OD2C2A, ACET, alex (with lipids & na)
+CLDA1   OD2C3A  -0.30000 3.10000 ! from CLDA1 OD2C1A, NMA 4check (with lipids)
+CLDA3   OD2C3A  -0.10000 3.26000 ! from CLDA3 OD2C1A, NMA 4check (with lipids)
+DCL3    OD2C3A  -0.25000 3.48000 ! from DCL3  OD2C1A, NMA 4check (with lipids)
+CLDA1   OD31A   -0.05000 3.73000 ! CLET/DCLE..MEOH
+CLDA3   OD31A   -0.03500 3.85000 ! TCLE..MEOH
+DCL3    OD31A   -0.09000 3.59000 ! CLET/DCLE/TCLE..MEOH
+CLDA1   OD31B   -0.05000 3.73000 ! CLET/DCLE..MEOH
+CLDA3   OD31B   -0.03500 3.85000 ! TCLE..MEOH
+DCL3    OD31B   -0.09000 3.59000 ! CLET/DCLE/TCLE..MEOH
+CLDA1   OD31C   -0.01000 3.61000 ! CLET/DCLE..PHEN
+CLDA3   OD31C   -0.06000 3.67000 ! TCLE..PHEN
+DCL3    OD31C   -0.07500 3.65000 ! CLET/DCLE/TCLE..PHEN
+CLDA1   OD31E   -0.05000 3.73000 ! from CLDA1 OD31A, MEOH (with carb.)
+CLDA3   OD31E   -0.03500 3.85000 ! from CLDA3 OD31A, MEOH (with carb.)
+DCL3    OD31E   -0.09000 3.59000 ! from DCL3  OD31A, MEOH (with carb.)
+CLDA1   OD31F   -0.05000 3.73000 ! CLET/DCLE..MEOH, alex, for OH in neutral acid
+CLDA3   OD31F   -0.03500 3.85000 ! TCLE..MEOH, alex
+DCL3    OD31F   -0.09000 3.59000 ! CLET/DCLE/TCLE..MEOH, alex
+CLDA1   OD31G   -0.05000 3.73000 ! from CLDA1 OD31A, MEOH (with na)
+CLDA3   OD31G   -0.03500 3.85000 ! from CLDA3 OD31A, MEOH (with na)
+DCL3    OD31G   -0.09000 3.59000 ! from DCL3  OD31A, MEOH (with na)
+CLDA1   SD31A   -0.18000 3.93000 ! CLET/DCLE..MESH
+CLDA3   SD31A   -0.13000 3.90000 ! TCLE..MESH
+DCL3    SD31A   -0.20000 3.99000 ! CLET/DCLE/TCLE..MESH
+CLDA1   SD31B   -0.18000 3.93000 ! CLET/DCLE..MESH, alex, for ETSH
+CLDA3   SD31B   -0.13000 3.90000 ! TCLE..MESH, alex
+DCL3    SD31B   -0.20000 3.99000 ! CLET/DCLE/TCLE..MESH, alex
+
+! bromobenzene based
+BRDR1   ND2A1   -0.30000 3.82000 ! BROB..ACEM  
+DBR2    ND2A1   -0.10000 3.82000 ! BROB..ACEM  
+BRDR1   ND2A2   -0.26000 3.78000 ! BROB..NMA
+DBR2    ND2A2   -0.13000 3.78000 ! BROB..NMA
+BRDR1   ND2B1   -0.30000 3.82000 ! from BRDR1 ND2A1, ACEM (with na)
+DBR2    ND2B1   -0.10000 3.82000 ! from DBR2  ND2A1, ACEM (with na)
+BRDR1   ND2R5A  -0.60000 3.37000 ! BROB..IMID/INDO 
+DBR2    ND2R5A  -0.20000 3.37000 ! BROB..IMID/INDO 
+BRDR1   ND2R5B  -0.20000 3.76000 ! BROB..IMID 
+DBR2    ND2R5B  -0.05000 3.76000 ! BROB..IMID 
+BRDR1   ND2R5E  -0.20000 3.76000 ! from BRDR1 ND2R5B, IMID (with na)
+DBR2    ND2R5E  -0.05000 3.76000 ! from DBR2  ND2R5B, IMID (with na)
+BRDR1   ND2R6A  -0.20000 3.76000 ! from BRDR1 ND2R5B, IMID, alex, for pyridine (with na)
+DBR2    ND2R6A  -0.05000 3.76000 ! from DBR2  ND2R5B, IMID, alex, for pyridine (with na)
+BRDR1   ND2R6B  -0.20000 3.76000 ! from BRDR1 ND2R5B, IMID (with na)
+DBR2    ND2R6B  -0.05000 3.76000 ! from DBR2  ND2R5B, IMID (with na)
+BRDR1   ND2R6C  -0.26000 3.78000 ! from BRDR1 ND2A2, NMA, alex (with na)
+DBR2    ND2R6C  -0.13000 3.78000 ! from DBR2  ND2A2, NMA, alex (with na)
+BRDR1   ND2P1A  -0.68000 3.73000 ! BROB..MGUAN (DBR2..HDP1B is not necessary)   
+BRDR1   ND3P3A  -0.95500 3.50000 ! BROB..NC1 (DBR2..HDP1B is not necessary)
+BRDR1   OD2C1A  -0.13000 3.70000 ! BROB..NMA  
+DBR2    OD2C1A  -0.10000 3.70000 ! BROB..NMA  
+BRDR1   OD2C1B  -0.13000 3.70000 ! from BRDR1 OD2C1A, NMA (with na)
+DBR2    OD2C1B  -0.10000 3.70000 ! from DBR2  OD2C1A, NMA (with na)
+BRDR1   OD2C1C  -0.13000 3.70000 ! from BRDR1 OD2C1A, NMA (with carb.)
+DBR2    OD2C1C  -0.10000 3.70000 ! from DBR2  OD2C1A, NMA (with carb.)
+BRDR1   OD2C1D  -0.30000 3.32000 ! from BRDR1 OD2C1A, NMA (with carb.)
+DBR2    OD2C1D  -0.10000 3.32000 ! from DBR2  OD2C1A, NMA (with carb.)
+BRDR1   OD2C2A  -0.09500 4.10000 ! BROB..ACET 
+DBR2    OD2C2A  -0.01500 3.85000 ! BROB..ACET 
+BRDR1   OD2C2B  -0.09500 4.10000 ! from BRDR1 OD2C2A, ACET, alex (with lipids & na)
+DBR2    OD2C2B  -0.01500 3.85000 ! from DBR2  OD2C2A, ACET, alex (with lipids & na)
+BRDR1   OD2C3A  -0.13000 3.70000 ! from BRDR1 OD2C1A, NMA, alex (with lipids)
+DBR2    OD2C3A  -0.10000 3.70000 ! from DBR2  OD2C1A, NMA, alex (with lipids)
+BRDR1   OD31A   -0.19000 3.56000 ! BROB..MEOH 
+DBR2    OD31A   -0.19000 3.56000 ! BROB..MEOH 
+BRDR1   OD31B   -0.19000 3.56000 ! BROB..MEOH 
+DBR2    OD31B   -0.19000 3.56000 ! BROB..MEOH 
+BRDR1   OD31E   -0.19000 3.56000 ! from BRDR1 OD31A, MEOH (with carb.)
+DBR2    OD31E   -0.19000 3.56000 ! from DBR2  OD31A, MEOH (with carb.)
+BRDR1   OD31F   -0.19000 3.56000 ! from BRDR1 OD31A, MEOH, alex, for OH in neutral acid
+DBR2    OD31F   -0.19000 3.56000 ! from BR2   OD31A, MEOH, alex
+BRDR1   OD31G   -0.19000 3.56000 ! from BRDR1 OD31A, MEOH, alex  (with na)
+DBR2    OD31G   -0.19000 3.56000 ! from DBR2  OD31A, MEOH, alex  (with na)
+BRDR1   SD31A   -0.35000 3.72000 ! BROB..MESH  
+DBR2    SD31A   -0.25000 3.72000 ! BROB..MESH  
+BRDR1   SD31B   -0.35000 3.72000 ! BROB..MESH, alex, for ETSH, CYS
+DBR2    SD31B   -0.25000 3.72000 ! BROB..MESH, alex
+!end halogens
+
+THOLE TCUT 5.0 MAXNBTHOLE 5000
+
+! CHARMM Bug: repeated NBTHOLEs for specific atom pairs are summed;
+! they should be overwritten.
+! Note that NBTHOLE terms are not present for all the pairs for which
+! NBFIXes are present and vice versa
+
+! Special cases
+! lipid specific - Yalun, 2022, transferred from the nucleic acids
+CD32B   OD2C2B   1.45000 !phosphate anionic O to C1 in phospholipids
+! nucleic acid specific
+CD32C   OD2C2B   1.45000 !phosphate anionic O to C5' special 1,4 term
+
+OD2C2B  ND2B1    3.77500 ! yiling, phosphate O to N in base, avoid H-Bond for GACC RNA
+OD30B   ND2B1    3.09979 ! yiling, phosphate O to N in base, avoid H-Bond for GACC RNA
+
+! Monoatomic cations
+!!!!! Lithium !!!!!
+LID     CD2R6A   2.13767 ! benz, yiling, 2023
+LID     ND2A1    1.41774 ! acem, yiling, 2023
+LID     ND2A2    1.86834 ! nma, yiling, 2023
+LID     ND2B1    3.46662 ! adeb, guab, cytb, yiling, 2023, amino N
+LID     ND2R5A   4.39296 ! imid, indo, yiling, 2023, protonated N
+LID     ND2R5B   1.55733 ! imid, yiling, 2023, unprotonated N
+LID     ND2R5D   3.16149 ! adeb, guab, yiling, 2023, N9
+LID     ND2R5E   1.79731 ! adeb, guab, yiling, 2023, N7
+LID     ND2R6B   1.35658 ! adeb, cytb, yiling, 2023, N3
+LID     ND2R6C   2.89645 ! guab, cytb, thyb, urab, yiling, 2023, N1
+LID     ND3A2    2.28851 ! mam1, yiling, 2023
+LID     OD2C1A   4.93098 ! acem, nma, yiling, 2023
+LID     OD2C1B   3.35407 ! guab, cytb, thyb, urab, yiling, 2023
+LID     OD2C2A   1.26652 ! acet, yiling, 2023, JCTC 
+LID     OD2C2B   4.98471 ! dmp, yiling, 2023
+LID     OD2C3A   0.64546 ! aceh,mas, yiling, 2023
+LID     OD30A    1.67374 ! meet, yiling, 2023
+LID     OD30B    1.26857 ! dmp, yiling, 2023
+LID     OD30BR   1.26857 ! dmp, yiling, 2023, RNA
+LID     OD30C    0.88625 ! mas, yiling, 2023
+LID     OD30D    1.26857 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+LID     OD30E    4.78169 ! phet, yiling, 2023
+LID     OD305A   1.67374 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+LID     OD306A   1.67374 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+LID     OD31A    1.45978 ! meoh, yiling, 2023
+LID     OD31B    1.45978 ! meoh, yiling, 2023, applied to primary, long alcohols
+LID     OD31C    1.58033 ! phen, yiling, 2023
+LID     OD31E    1.45978 ! meoh, yiling, 2023, applied to ethylene glycol
+LID     OD31G    1.45978 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+LID     SD2C2A   3.08189 ! mes, yiling, 2023
+LID     SD2C2B   3.08189 ! mes, yiling, 2023, applied to ETS, thiolates
+LID     SD30A    2.02916 ! dms, yiling, 2023
+LID     SD30B    2.07090 ! dmds, yiling, 2023
+LID     SD31A    1.52517 ! mesh, yiling, 2023
+LID     SD31B    1.52517 ! mesh, yiling, 2023, yiling, 2023, applied to ETSH
+ 
+!!!!! Sodium !!!!!
+SODD    CD2R6A   4.93763 ! benz, yiling, 2023
+SODD    ND2A1    3.25297 ! acem, yiling, 2023, JCTC 
+SODD    ND2A2    3.88285 ! nma, yiling, 2023, JCTC 
+SODD    ND2B1    4.78815 ! adeb, guab, cytb, yiling, 2023, amino N
+SODD    ND2R5A   4.83751 ! imid, indo, yiling, 2023, protonated N
+SODD    ND2R5B   4.46657 ! imid, yiling, 2023, unprotonated N
+SODD    ND2R5D   3.45055 ! adeb, guab, yiling, 2023, N9
+SODD    ND2R5E   2.84300 ! adeb, guab, yiling, 2023, N7
+SODD    ND2R6B   1.41613 ! adeb, cytb, yiling, 2023, N3
+SODD    ND2R6C   3.89230 ! guab, cytb, thyb, urab, yiling, 2023, N1
+SODD    ND3A2    3.02188 ! mam1, yiling, 2023
+SODD    OD2C1A   1.54864 ! acem, nma, yiling, 2023, JCTC 
+SODD    OD2C1B   1.50098 ! guab, cytb, thyb, urab, yiling, 2023
+SODD    OD2C2A   3.09820 ! acet, yiling, 2023, JCTC 
+SODD    OD2C2B   5.01299 ! dmp, yiling, 2023, JCTC 
+SODD    OD2C3A   3.34812 ! aceh,mas, yiling, 2023
+SODD    OD30A    2.38138 ! meet, yiling, 2023
+SODD    OD30B    1.52718 ! dmp, yiling, 2023
+SODD    OD30BR   1.52718 ! dmp, yiling, 2023, RNA
+SODD    OD30C    3.04781 ! mas, yiling, 2023
+SODD    OD30D    1.52718 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+SODD    OD30E    2.70081 ! phet, yiling, 2023
+SODD    OD305A   2.38138 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+SODD    OD306A   2.38138 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+SODD    OD31A    2.59341 ! meoh, yiling, 2023, JCTC 
+SODD    OD31B    2.59341 ! meoh, yiling, 2023, applied to primary, long alcohols
+SODD    OD31C    4.41661 ! phen, yiling, 2023
+SODD    OD31D    1.39384 ! aceh, yiling, 2023, applied to Methylphosphate, neutral
+SODD    OD31E    2.59341 ! meoh, yiling, 2023, applied to ethylene glycol
+SODD    OD31F    1.39384 ! aceh, yiling, 2023
+SODD    OD31G    2.59341 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+SODD    SD2C2A   3.25689 ! mes, yiling, 2023
+SODD    SD2C2B   3.25689 ! mes, yiling, 2023, applied to ETS, thiolates
+SODD    SD30B    3.02249 ! dmds, yiling, 2023
+SODD    SD31A    1.51323 ! mesh, yiling, 2023
+SODD    SD31B    1.51323 ! mesh, yiling, 2023, applied to ETSH
+ 
+!!!!! Potassium !!!!!
+POTD    CD2R6A   3.83779 ! benz, yiling, 2023
+POTD    ND2A1    3.74948 ! acem, yiling, 2023, JCTC 
+POTD    ND2A2    2.10080 ! nma, yiling, 2023, JCTC 
+POTD    ND2B1    4.19927 ! adeb, guab, cytb, yiling, 2023, amino N
+POTD    ND2R5A   3.46580 ! imid, indo, yiling, 2023, protonated N
+POTD    ND2R5B   4.14513 ! imid, yiling, 2023, unprotonated N
+POTD    ND2R5D   3.82721 ! adeb, guab, yiling, 2023, N9
+POTD    ND2R5E   3.18914 ! adeb, guab, yiling, 2023, N7
+POTD    ND2R6B   1.31548 ! adeb, cytb, yiling, 2023, N3
+POTD    ND2R6C   3.23520 ! guab, cytb, thyb, urab, yiling, 2023, N1
+POTD    ND3A2    3.11158 ! mam1, yiling, 2023
+POTD    OD2C1A   2.09141 ! acem, nma, yiling, 2023, JCTC 
+POTD    OD2C1B   4.98773 ! guab, cytb, thyb, urab, yiling, 2023
+POTD    OD2C2A   3.63196 ! acet, yiling, 2023, JCTC 
+POTD    OD2C2B   1.88686 ! dmp, yiling, 2023
+POTD    OD2C3A   2.83217 ! aceh,mas, yiling, 2023
+POTD    OD30A    2.23398 ! meet, yiling, 2023
+POTD    OD30B    4.48938 ! dmp, yiling, 2023
+POTD    OD30BR   4.48938 ! dmp, yiling, 2023, RNA
+POTD    OD30C    2.33407 ! mas, yiling, 2023
+POTD    OD30D    4.48938 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+POTD    OD30E    1.53325 ! phet, yiling, 2023
+POTD    OD305A   2.23398 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+POTD    OD306A   2.23398 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+POTD    OD31A    4.59270 ! meoh, yiling, 2023, JCTC 
+POTD    OD31B    4.59270 ! meoh, yiling, 2023, applied to primary, long alcohols
+POTD    OD31C    2.77881 ! phen, yiling, 2023
+POTD    OD31D    4.33362 ! aceh, yiling, 2023, applied to Methylphosphate, neutral
+POTD    OD31E    4.59270 ! meoh, yiling, 2023, applied to ethylene glycol
+POTD    OD31F    4.33362 ! aceh, yiling, 2023
+POTD    OD31G    4.59270 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+POTD    SD2C2A   2.11686 ! mes, yiling, 2023
+POTD    SD2C2B   2.11686 ! mes, yiling, 2023, applied to ETS, thiolates
+POTD    SD30A    3.43827 ! dms, yiling, 2023
+POTD    SD30B    4.63005 ! dmds, yiling, 2023
+POTD    SD31A    1.50040 ! mesh, yiling, 2023
+POTD    SD31B    1.50040 ! mesh, yiling, 2023, applied to ETSH
+ 
+!!!!! Rubidium !!!!!
+RBD     CD2R6A   4.06661 ! benz, yiling, 2023
+RBD     ND2A1    4.59483 ! acem, yiling, 2023
+RBD     ND2A2    4.73245 ! nma, yiling, 2023
+RBD     ND2B1    4.10211 ! adeb, guab, cytb, yiling, 2023, amino N
+RBD     ND2R5A   2.83449 ! imid, indo, yiling, 2023, protonated N
+RBD     ND2R5B   4.26507 ! imid, yiling, 2023, unprotonated N
+RBD     ND2R5D   4.32254 ! adeb, guab, yiling, 2023, N9
+RBD     ND2R5E   4.81742 ! adeb, guab, yiling, 2023, N7
+RBD     ND2R6B   2.30902 ! adeb, cytb, yiling, 2023, N3
+RBD     ND2R6C   4.04585 ! guab, cytb, thyb, urab, yiling, 2023, N1
+RBD     ND3A2    3.35747 ! mam1, yiling, 2023
+RBD     OD2C1A   2.99829 ! acem, nma, yiling, 2023
+RBD     OD2C1B   5.08825 ! guab, cytb, thyb, urab, yiling, 2023
+RBD     OD2C2A   4.45401 ! acet, yiling, 2023, JCTC 
+RBD     OD2C2B   1.94273 ! dmp, yiling, 2023
+RBD     OD2C3A   1.61222 ! aceh,mas, yiling, 2023
+RBD     OD30A    3.56696 ! meet, yiling, 2023
+RBD     OD30B    2.37428 ! dmp, yiling, 2023
+RBD     OD30BR   2.37428 ! dmp, yiling, 2023, RNA
+RBD     OD30C    4.22119 ! mas, yiling, 2023
+RBD     OD30D    2.37428 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+RBD     OD30E    2.24767 ! phet, yiling, 2023
+RBD     OD305A   3.56696 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+RBD     OD306A   3.56696 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+RBD     OD31A    3.86775 ! meoh, yiling, 2023, JCTC 
+RBD     OD31B    3.86775 ! meoh, yiling, 2023, applied to primary, long alcohols
+RBD     OD31C    2.94201 ! phen, yiling, 2023
+RBD     OD31D    3.26889 ! aceh, yiling, 2023, applied to Methylphosphate, neutral
+RBD     OD31E    3.86775 ! meoh, yiling, 2023, applied to ethylene glycol
+RBD     OD31F    3.26889 ! aceh, yiling, 2023
+RBD     OD31G    3.86775 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+RBD     SD2C2A   2.09814 ! mes, yiling, 2023
+RBD     SD2C2B   2.09814 ! mes, yiling, 2023, applied to ETS, thiolates
+RBD     SD30A    4.25802 ! dms, yiling, 2023
+RBD     SD30B    4.37659 ! dmds, yiling, 2023
+ 
+!!!!! Cesium !!!!!
+CSD     CD2R6A   3.72515 ! benz, yiling, 2023
+CSD     ND2A1    3.14261 ! acem, yiling, 2023
+CSD     ND2A2    2.73314 ! nma, yiling, 2023
+CSD     ND2B1    4.42369 ! adeb, guab, cytb, yiling, 2023, amino N
+CSD     ND2R5A   4.63164 ! imid, indo, yiling, 2023, protonated N
+CSD     ND2R5B   4.00608 ! imid, yiling, 2023, unprotonated N
+CSD     ND2R5D   2.81526 ! adeb, guab, yiling, 2023, N9
+CSD     ND2R5E   3.71457 ! adeb, guab, yiling, 2023, N7
+CSD     ND2R6B   3.84253 ! adeb, cytb, yiling, 2023, N3
+CSD     ND2R6C   4.30906 ! guab, cytb, thyb, urab, yiling, 2023, N1
+CSD     ND3A2    3.75857 ! mam1, yiling, 2023
+CSD     OD2C1A   2.58963 ! acem, nma, yiling, 2023
+CSD     OD2C1B   4.89626 ! guab, cytb, thyb, urab, yiling, 2023
+CSD     OD2C2A   4.06696 ! acet, yiling, 2023, JCTC 
+CSD     OD2C2B   2.30625 ! dmp, yiling, 2023
+CSD     OD2C3A   1.03679 ! aceh,mas, yiling, 2023
+CSD     OD30A    4.23998 ! meet, yiling, 2023
+CSD     OD30B    2.68846 ! dmp, yiling, 2023
+CSD     OD30BR   2.68846 ! dmp, yiling, 2023, RNA
+CSD     OD30C    3.38073 ! mas, yiling, 2023
+CSD     OD30D    2.68846 ! dmp, yiling, 2023, applied to (terminal phosphate), MP_1
+CSD     OD30E    4.19384 ! phet, yiling, 2023
+CSD     OD305A   4.23998 ! meet, yiling, 2023, applied to 5-membered ring (tetrahydrofuran)
+CSD     OD306A   4.23998 ! meet, yiling, 2023, applied to 6-membered ring (tetrahydropyran)
+CSD     OD31A    4.77880 ! meoh, yiling, 2023
+CSD     OD31B    4.77880 ! meoh, yiling, 2023, applied to primary, long alcohols
+CSD     OD31C    3.48395 ! phen, yiling, 2023
+CSD     OD31D    4.87700 ! aceh, yiling, 2023, applied to Methylphosphate, neutral
+CSD     OD31E    4.77880 ! meoh, yiling, 2023, applied to ethylene glycol
+CSD     OD31F    4.87700 ! aceh, yiling, 2023
+CSD     OD31G    4.77880 ! meoh, yiling, 2023, applied to 3-terminal OH in nucleic acids
+CSD     SD2C2A   3.13433 ! mes, yiling, 2023
+CSD     SD2C2B   3.13433 ! mes, yiling, 2023, applied to ETS, thiolates
+CSD     SD30A    3.17830 ! dms, yiling, 2023
+CSD     SD30B    4.26380 ! dmds, yiling, 2023
+
+! Divalent monoatomic cations
+! water-divalent cations, Yu et al., JCTC, 2010
+ODW     BAD      1.45869 
+ODW     CALD     1.50877 
+ODW     MAGD     1.51567 
+ODW     SRD      1.23792 
+ODW     ZND      2.14773  
+
+!!!!! Magnesium !!!!!
+MAGD    CLAD     0.66000 ! chloride, nucleic acids, jal
+MAGD    ND2A2    1.49100 ! Cyt-N1, Thy-N3, Ura-N1/N3, Gua-N1, from MAGD ND2R6C for amide, secondary (NMA, peptide bond)
+MAGD    ND2B1    1.34300 ! Cyt-N4, Ade-N6, Gua-N2, jal
+MAGD    ND2R5B   1.38400 ! Ade/Gua-N7, neutral his unprotonated ring nitrogen
+MAGD    ND2R5E   1.38400 ! Ade/Gua-N7
+MAGD    ND2R6A   1.17300 ! Cyt-N3, Ade-N3/N1, Gua-N3, aromatic N, 6-membered ring (pyridine)
+MAGD    ND2R6B   1.17300 ! Cyt-N3, Ade-N3/N1, Gua-N3
+MAGD    ND2R6C   1.49100 ! Cyt-N1, Thy-N3, Ura-N1/N3, Gua-N1
+MAGD    ND2R6D   1.49100 ! Thy-N1
+MAGD    OD2C1A   1.07600 ! protein backbone/amide LPDO1 on OD2C1A
+MAGD    OD2C1B   1.10900 ! Cyt-O2, Thy-O2/O4, Ura-O2/O4, Gua-O6
+MAGD    OD2C2B   1.44900 ! lipids and nucleic acids, phosphate anionic
+MAGD    OD30B    1.15100 ! lipids and nucleic acids, phosphate ester O
+MAGD    OD30BR   1.15100 ! nucleic acids, phosphate ester O, RNA specific
+MAGD    OD30D    1.15100 ! nucleic acids, phosphate ester O, methylphosphates
+MAGD    OD31D    1.95000 ! based on methylphosphate hydroxyl, transfer to other hydroxyls requires testing
+
+!!!!! Calcium !!!!!
+!CALD    OD2C1A   1.32000 ! protein backbone/amide, Hui-2015, commented until testing complete
+!CALD    OD2C1B   1.32000 ! protein backbone/amide, Hui-2015, for Cyt-O2, Thy-O2/O4, Ura-O2/O4, Gua-O6, 
+!CALD    OD31A    1.05000 ! ethanol, ser, thr, Hui-2015, commented until testing complete
+!CALD    OD31B    1.05000 ! from CALD OD31A, commented until testing complete
+!CALD    OD31C    1.05000 ! from CALD OD31A, commented until testing complete
+!CALD    OD31E    1.05000 ! from CALD OD31A, commented until testing complete
+!CALD    OD31F    1.05000 ! from CALD OD31A, commented until testing complete
+!CALD    OD31G    1.05000 ! from CALD OD31A, commented until testing complete
+!!!!! Barium !!!!!
+BAD     OD2C1A   1.20000 ! NMA protein backbone (from ion-NMA interaction)
+!!!!! Zinc !!!!!
+ZND     OD2C1A   1.50000 ! NMA protein backbone (from ion-NMA interaction) 
+
+! Monoatomic anions
+!!!!! Chloride !!!!!!
+CLAD    CD2N1A   4.11115 ! mguan, yiling, 2023
+CLAD    ND2A2    2.86000 ! protein backbone/amide, Hui-2015, undergoing testing:	CHECK
+CLAD    ND2P1A   4.10351 ! mguan, yiling, 2023
+CLAD    ND2R5C   1.41768 ! imim, yiling, 2023
+CLAD    ND2R6C   1.41768 ! imim, yiling, 2023, applied to 6-mem ring: protonated: NA pyrimidine bases
+CLAD    ND3P2A   1.59027 ! nc1, yiling, 2023, applied to protonated sp3 nitrogen, 0, 1 or 2 Hs
+CLAD    ND3P3A   1.59027 ! nc1, yiling, 2023
+
+END
