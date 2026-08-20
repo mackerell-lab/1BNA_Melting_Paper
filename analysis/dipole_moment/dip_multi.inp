@@ -1,0 +1,70 @@
+* READ ENERGY
+*
+prnlev 5
+bomlev -1   ! in case selections are zero
+
+
+
+! Read topology and parameter files
+
+stream ./toppar_drude/toppar_drude_main_protein_2024a_0828.str
+stream ./toppar_drude/toppar_drude_nucleic_acid_2025a.str
+stream ./toppar_drude/toppar_drude_model_2024a.str
+stream ./toppar_drude/toppar_drude_nbfix_nbthole_2024a_base_stacking_cs_mp2_avtz.str
+
+read psf xplor card name step3_charmm2omm.psf 
+read coor pdb resid name step3_charmm2omm.pdb
+
+! Will be changed in dip_multi.sh
+coor orient sele (bynu XXX:XXX) end 
+
+coor copy comp
+
+
+
+! Change to your trajectory
+
+open read unit 13 file name ./tmp/step5_all_2us.dcd 
+traj query unit 13
+
+   nbonds atom vatom switch vswitch cutnb 999.0 ctonnb 997.0 ctofnb 998.0
+
+set trjmax ?NFILE
+
+
+open write unit 11 card name base_XX.dip
+
+calc stopval = ?nfile * ?skip
+
+traj firstu 13 nunit 1 begin 0 skip ?skip stop @stopval
+set i 1
+set sum 0
+
+label traj_loop
+
+   traj read
+
+   coor orient sele (bynu XXX:XXX) end
+   coor dipo sele (bynu XXX:XXX) end
+   set  dipx ?XDIP
+   set  dipy ?YDIP
+   set  dipz ?ZDIP
+   set  dipa ?RDIP
+
+
+    write title unit 11
+    *@i @dipx @dipy @dipz @dipa
+    *
+
+   incr i by 1
+   if @i .lt. @trjmax goto traj_loop
+
+
+close unit 13
+
+
+close unit 11
+stop
+
+
+

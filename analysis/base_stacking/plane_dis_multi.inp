@@ -1,0 +1,91 @@
+* READ ENERGY
+*
+prnlev 5
+bomlev -1   ! in case selections are zero
+
+
+
+! Read topology and parameter files
+
+stream ./toppar_drude/toppar_drude_main_protein_2024a_0828.str
+stream ./toppar_drude/toppar_drude_nucleic_acid_2025a.str
+stream ./toppar_drude/toppar_drude_model_2024a.str
+stream ./toppar_drude/toppar_drude_nbfix_nbthole_2024a_base_stacking_cs_mp2_avtz.str
+
+read psf xplor card name step3_charmm2omm.psf 
+read coor pdb resid name step3_charmm2omm.pdb
+
+coor copy comp
+
+open read unit 13 file name ./tmp/step5_all_2us.dcd 
+traj query unit 13
+
+   nbonds atom vatom switch vswitch cutnb 999.0 ctonnb 997.0 ctofnb 998.0
+
+set trjmax ?NFILE
+
+
+open write unit 11 card name angle_dis_shift_XXX.txt
+
+calc stopval = ?nfile * ?skip
+
+traj firstu 13 nunit 1 begin 0 skip ?skip stop @stopval
+set i 1
+set sum 0
+
+label traj_loop
+
+   traj read
+
+   ! first base
+   coor LSQP NORM sele (bynu XXX:XX1) .and. .not. (type H* .or. type LP* .or. type D*) end 
+   set  vx1  ?XAXI
+   set  vy1  ?YAXI
+   set  vz1  ?ZAXI
+
+   ! second base
+   coor LSQP NORM sele (bynu XXX:XX2) .and. .not. (type H* .or. type LP* .or. type D*) end
+   set  vx2  ?XAXI
+   set  vy2  ?YAXI
+   set  vz2  ?ZAXI
+
+   calc dot = @vx1 * @vx2 + @vy1 * @vy2 + @vz1 * @vz2
+   calc costheta = @dot
+
+  ! Clamp to avoid domain error
+  if  @costheta .gt. 1.0   costheta = 1.0
+  if  @costheta .lt. -1.0  costheta = -1.0
+
+  ! Compute angle in radians and degrees
+  calc anglerad = acos(@costheta)
+  calc angledeg = @anglerad * 180.0 / 3.14159265
+
+   if @angledeg .gt. 90 calc angledeg = 180 - @angledeg
+
+   coor AXIS sele (bynu XXX:XX1) .and. .not. (type H* .or. type LP* .or. type D* ) end  -
+   sele (bynu XXX:XX2) .and. .not. (type H* .or. type LP* .or. type D* ) end 
+
+   set  gx  ?XAXI
+   set  gy  ?YAXI
+   set  gz  ?ZAXI
+   set  gr  ?RAXI
+
+
+    write title unit 11
+    *@i @gr @angledeg 
+    *
+
+   !incr i by @skip
+   incr i by 1
+   !if @i .lt. 2 goto traj_loop
+   if @i .lt. @trjmax goto traj_loop
+
+
+close unit 13
+
+
+close unit 11
+stop
+
+
+
